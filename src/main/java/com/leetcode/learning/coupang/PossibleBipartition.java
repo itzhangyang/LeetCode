@@ -40,7 +40,8 @@ public class PossibleBipartition {
 
         /*This method attempts to color a node in a graph with a given color.
         If the node is already colored, it checks if the color matches the given color.
-         If not, it returns false. Otherwise, it assigns the color to the node and recursively attempts to color its neighbors with the opposite color.
+         If not, it returns false.
+         Otherwise, it assigns the color to the node and recursively attempts to color its neighbors with the opposite color.
           If any neighbor cannot be colored, it returns false.
            If all neighbors are successfully colored, it returns true.
         */

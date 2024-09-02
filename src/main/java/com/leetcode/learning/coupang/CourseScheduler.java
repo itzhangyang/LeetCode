@@ -1,0 +1,37 @@
+package com.leetcode.learning.coupang;
+
+/**
+ * There are a total of numCourses courses you have to take, labeled from 0 to numCourses-1.
+ * You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.
+ * For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
+ * Return true if you can finish all courses. Otherwise, return false.
+ */
+public class CourseScheduler {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        Graph graph = new Graph();
+        for (int[] edge : prerequisites) {
+            graph.addEdge(edge[0], edge[1]);
+        }
+
+        for (int i = 0; i < numCourses; i++) {
+            if (!dfs(graph, i, new boolean[numCourses])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean dfs(Graph graph, int node, boolean[] visited) {
+        if (visited[node]) {
+            return false;
+        }
+        visited[node] = true;
+        for (int neighbor : graph.getNeighbors(node)) {
+            if (!dfs(graph, neighbor, visited)) {
+                return false;
+            }
+        }
+        visited[node] = false;
+        return true;
+    }
+}

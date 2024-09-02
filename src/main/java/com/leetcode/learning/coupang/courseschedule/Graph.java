@@ -1,9 +1,10 @@
-package com.leetcode.learning.coupang;
+package com.leetcode.learning.coupang.courseschedule;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Graph {
+
     public List<Integer> nodes;
     public List<Edge> edges;
 
@@ -11,6 +12,15 @@ public class Graph {
         this.nodes = new ArrayList<>();
         this.edges = new ArrayList<>();
     }
+
+    public Graph(int[][] prerequisites){
+        this.nodes = new ArrayList<>();
+        this.edges = new ArrayList<>();
+        for (int[] prerequisite : prerequisites) {
+            addEdge(prerequisite[1], prerequisite[0]);
+        }
+    }
+
     public void addEdge(int from, int to) {
         if (!nodes.contains(from)) {
             nodes.add(from);
@@ -19,18 +29,6 @@ public class Graph {
             nodes.add(to);
         }
         edges.add( new Edge(from, to));
-    }
-
-    List<Integer> getNeighbors(int node) {
-        List<Integer> neighbors = new ArrayList<>();
-        for (Edge edge : edges) {
-            if (edge.from == node) {
-                neighbors.add(edge.to);
-            } else if (edge.to == node) {
-                neighbors.add(edge.from);
-            }
-        }
-        return neighbors;
     }
 
     List<Integer> getToNodes(int node) {
@@ -42,4 +40,18 @@ public class Graph {
         }
         return toNodes;
     }
+
+    public boolean dfs(int node, boolean[] visited) {
+        if (visited[node]) {
+            return false;
+        }
+        visited[node] = true;
+        for (int neighbor : getToNodes(node)) {
+            if (!dfs(neighbor, visited)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
