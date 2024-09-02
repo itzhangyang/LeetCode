@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ProductInventoryManager {
-    private Map<String, Product> products;
-    private Map<String, Integer> inventory;
+    private final Map<String, Product> products;
+    private final Map<String, Integer> inventory;
 
     public ProductInventoryManager() {
         products = new HashMap<>();
