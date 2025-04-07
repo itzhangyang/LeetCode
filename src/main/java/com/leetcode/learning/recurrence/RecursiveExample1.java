@@ -3,10 +3,15 @@ package com.leetcode.learning.recurrence;
 public class RecursiveExample1 {
 
     public static int fibonacci(int n) {
+       // base case
         if (n <= 1) {
             return n;
         }
-        return fibonacci(n - 1) + fibonacci(n - 2);
+        // recursive case
+        int roundNMinus1 = fibonacci(n - 1);
+        int roundNMinus2 = fibonacci(n - 2);
+        // combine the results
+        return roundNMinus1 + roundNMinus2;
     }
 
     public static int mergeSortComplexity(int n) {
